@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="btn05menit_default.png">assets/images/btn05menit_default.png</file>
+        <file alias="btn05menit_active.png">assets/images/btn05menit_active.png</file>
+        <file alias="btn10menit_default.png">assets/images/btn10menit_default.png</file>
+        <file alias="btn10menit_active.png">assets/images/btn10menit_active.png</file>
+        <file alias="btn15menit_default.png">assets/images/btn15menit_default.png</file>
+        <file alias="btn15menit_active.png">assets/images/btn15menit_active.png</file>
+        <file alias="btn20menit_default.png">assets/images/btn20menit_default.png</file>
+        <file alias="btn20menit_active.png">assets/images/btn20menit_active.png</file>
+        <file alias="landing_page.png">assets/images/Landing Page.png</file>
+        <file alias="form_student.png">assets/images/Form Student.png</file>
+        <file alias="scenario_bg.png">assets/images/Scenario (1).png</file>
+    </qresource>
+</RCC>

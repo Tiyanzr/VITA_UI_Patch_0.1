@@ -19,8 +19,9 @@ dengan pemilihan durasi latihan (5/10/15/20 menit).
 VITA_UI_Patch_0.1/
 ├─ main.cpp                  # entry point, memuat ui_landingpage.h
 ├─ Landingpage.ui            # desain halaman (Qt Designer)
-├─ VITA_UI_Patch_0.1.pro     # project qmake (TARGET masih VITA_Patch_Testing)
-├─ assets/images/            # ikon tombol + gambar referensi desain
+├─ VITA_UI_Patch_0.1.pro     # project qmake (TARGET = VITA_UI_Patch_0.1)
+├─ resource.qrc               # aset gambar sebagai Qt Resource (prefix /images)
+├─ assets/images/            # ikon tombol + background halaman
 ├─ release/                  # bundle siap pakai (exe + Qt DLL + plugin)
 ├─ .vscode/                  # task build & include path Qt
 └─ .gitignore                # mengabaikan artefak build & plugin debug
@@ -67,17 +68,24 @@ Agar repo tidak membengkak, file berikut diabaikan lewat `.gitignore` (tetap ada
 
 Prasyarat: Qt 5.11.2 MinGW 32-bit terpasang di `C:\Qt\Qt5.11.2`.
 
+> **Penting:** `Makefile` memanggil `g++` tanpa path absolut, jadi compiler pertama di `PATH` yang
+> dipakai. Pastikan `C:\Qt\Qt5.11.2\Tools\mingw530_32\bin` berada **sebelum** compiler lain
+> (mis. Strawberry Perl 4.9.2). Kalau tidak, exe akan ter-link dengan `libgcc_s_sjlj-1.dll` dan
+> gagal start dengan exit code `0xC0000139` (STATUS_ENTRYPOINT_NOT_FOUND).
+
 ```powershell
 # dari folder proyek
-& "C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin\qmake.exe" VITA_UI_Patch_0.1.pro
-mingw32-make -j4
+$env:PATH = "C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin;C:\Qt\Qt5.11.2\Tools\mingw530_32\bin;" + $env:PATH
+qmake VITA_UI_Patch_0.1.pro
+mingw32-make -f Makefile.Release -j4
 ```
 
-Atau pakai task VS Code **Build Qt (QMake)** (`.vscode/task.json`).
+Atau pakai task VS Code **Build Qt (QMake)** (`.vscode/task.json`; PATH-nya sudah diatur di
+`.vscode/settings.json`).
 
-Hasil build bernama `VITA_Patch_Testing.exe` (sesuai `TARGET` di `.pro`), lalu disalin/di-rename
-menjadi `release\VITA_UI_Patch_0.1.exe`. Nama file project sudah `VITA_UI_Patch_0.1.pro`, tetapi
-`TARGET` di dalamnya masih `VITA_Patch_Testing`; ubah `TARGET` bila ingin nama output konsisten.
+Hasil build langsung bernama `release\VITA_UI_Patch_0.1.exe` (sesuai `TARGET` di `.pro`).
+Resources dari `resource.qrc` dikompilasi menjadi `release\qrc_resource.o` dan ikut di-link,
+sehingga gambar tidak lagi dibaca dari file eksternal saat runtime.
 
 Deploy ulang dependency (misal setelah menambah modul Qt):
 
@@ -85,20 +93,21 @@ Deploy ulang dependency (misal setelah menambah modul Qt):
 & "C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin\windeployqt.exe" --release --no-translations release\VITA_UI_Patch_0.1.exe
 ```
 
-## Catatan / Known Issue
+## Catatan Desain
 
-1. **Path gambar masih absolut.** `Landingpage.ui` (dan `ui_landingpage.h` hasil generate)
-   mereferensikan:
-   - `D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn*.png` (stylesheet tombol)
-   - `../../../Downloads/Landing Page.png` (pixmap background)
-
-   Efeknya, di mesin/folder lain ikon tombol dan background bisa tidak muncul tanpa error.
-   Perbaikan yang disarankan: pindahkan aset ke Qt Resource (`.qrc`) atau ubah ke path relatif
-   `assets/images/...`, lalu generate ulang dengan `qmake` + `make`.
-2. Nama `TARGET` di `.pro` (`VITA_Patch_Testing`) belum sama dengan nama exe rilis
-   (`VITA_UI_Patch_0.1`).
-3. `assets/images/Landing Page.png`, `Form Student.png`, dan `Scenario*.png` saat ini hanya
-   gambar referensi desain, belum di-bundle sebagai resource aplikasi.
+1. **Aset memakai Qt Resource.** `Landingpage.ui` mereferensikan `:/images/...` (prefix di
+   `resource.qrc`) untuk background dan ikon tombol durasi. Tidak ada lagi path `D:/...` atau
+   `../../../Downloads/...`, sehingga exe bisa dijalankan dari folder mana pun.
+2. **Label scenario tercetak di background.** `Scenario (1).png` sudah memuat teks
+   *Normal Condition*, *High PEEP*, dst. Karena itu widget `radioButton_1..5` tetap 20×20 tanpa
+   jarak (`spacing: 0px`, `color: transparent`) hanya sebagai indikator di atas gambar. Teks pada
+   widget tetap diisi di `.ui` karena `main.cpp` membacanya lewat `QRadioButton::text()`.
+   Jangan hapus properti `text` radio meski tidak terlihat.
+3. **`Scenario.png` tidak di-bundle** karena tidak dipakai (menghemat ±168 KB di exe).
+4. **`stackedWidget` `currentIndex` = 0** agar preview Designer dan aplikasi sama-sama mulai dari
+   landing page. `main.cpp` juga men-set index 0 secara eksplisit.
+5. **`frame`, `frame_2`, `frame_3`, `frame_4` memakai `frameShape = NoFrame`** supaya Qt tidak
+   menggambar kotak border di atas gambar desain.
 
 ## Checklist
 
@@ -106,5 +115,6 @@ Deploy ulang dependency (misal setelah menambah modul Qt):
 - [x] Remote `origin` terhubung ke GitHub
 - [x] Source Qt (`main.cpp`, `Landingpage.ui`, `.pro`) masuk repo
 - [x] Bundle `release/` (exe + Qt DLL) diuji jalan di Windows
-- [ ] Migrasi path aset ke `.qrc` / path relatif
-- [ ] Selaraskan `TARGET` di `.pro` dengan nama exe rilis
+- [x] Migrasi path aset ke `.qrc` / path relatif
+- [x] Selaraskan `TARGET` di `.pro` dengan nama exe rilis
+

@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label">
@@ -42,7 +42,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../Downloads/Landing Page.png</pixmap>
+      <pixmap>:/images/landing_page.png</pixmap>
      </property>
     </widget>
     <widget class="QFrame" name="frame">
@@ -55,7 +55,7 @@
       </rect>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
@@ -107,7 +107,7 @@ QPushButton:pressed {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../Downloads/Form Student.png</pixmap>
+      <pixmap>:/images/form_student.png</pixmap>
      </property>
     </widget>
     <widget class="QFrame" name="frame_2">
@@ -120,7 +120,7 @@ QPushButton:pressed {
       </rect>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
@@ -340,7 +340,7 @@ QPushButton:pressed {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../Downloads/Scenario (1).png</pixmap>
+      <pixmap>:/images/scenario_bg.png</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="Exit2">
@@ -373,7 +373,7 @@ QPushButton:pressed {
       </rect>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
@@ -441,11 +441,11 @@ QPushButton:pressed {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btn05menit {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn05menit_default.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn05menit_default.png) 0 0 0 0 stretch stretch;
     border: none;
 }
 QPushButton#btn05menit:checked {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn05menit_active.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn05menit_active.png) 0 0 0 0 stretch stretch;
 }</string>
       </property>
       <property name="text">
@@ -469,11 +469,11 @@ QPushButton#btn05menit:checked {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btn10menit {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn10menit_default.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn10menit_default.png) 0 0 0 0 stretch stretch;
     border: none;
 }
 QPushButton#btn10menit:checked {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn10menit_active.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn10menit_active.png) 0 0 0 0 stretch stretch;
 }</string>
       </property>
       <property name="text">
@@ -497,11 +497,11 @@ QPushButton#btn10menit:checked {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btn15menit {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn15menit_default.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn15menit_default.png) 0 0 0 0 stretch stretch;
     border: none;
 }
 QPushButton#btn15menit:checked {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn15menit_active.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn15menit_active.png) 0 0 0 0 stretch stretch;
 }</string>
       </property>
       <property name="text">
@@ -525,11 +525,11 @@ QPushButton#btn15menit:checked {
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#btn20menit {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn20menit_default.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn20menit_default.png) 0 0 0 0 stretch stretch;
     border: none;
 }
 QPushButton#btn20menit:checked {
-    border-image: url(D:/Projects/10_Instrumentation/VITA_Patch_Testing/assets/images/btn20menit_active.png) 0 0 0 0 stretch stretch;
+    border-image: url(:/images/btn20menit_active.png) 0 0 0 0 stretch stretch;
 }</string>
       </property>
       <property name="text">
@@ -553,7 +553,7 @@ QPushButton#btn20menit:checked {
       </rect>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
@@ -586,6 +586,7 @@ QRadioButton#radioButton_3,
 QRadioButton#radioButton_4,
 QRadioButton#radioButton_5 {
     spacing: 0px;
+    color: transparent; /* label scenario sudah tercetak di gambar background */
 }
 QRadioButton#radioButton_1::indicator,
 QRadioButton#radioButton_2::indicator,
@@ -610,7 +611,7 @@ QRadioButton#radioButton_5::indicator:checked {
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Normal Condition</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_2">
@@ -641,6 +642,7 @@ QRadioButton#radioButton_3,
 QRadioButton#radioButton_4,
 QRadioButton#radioButton_5 {
     spacing: 0px;
+    color: transparent; /* label scenario sudah tercetak di gambar background */
 }
 QRadioButton#radioButton_1::indicator,
 QRadioButton#radioButton_2::indicator,
@@ -665,7 +667,7 @@ QRadioButton#radioButton_5::indicator:checked {
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>High PEEP</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_3">
@@ -696,6 +698,7 @@ QRadioButton#radioButton_3,
 QRadioButton#radioButton_4,
 QRadioButton#radioButton_5 {
     spacing: 0px;
+    color: transparent; /* label scenario sudah tercetak di gambar background */
 }
 QRadioButton#radioButton_1::indicator,
 QRadioButton#radioButton_2::indicator,
@@ -720,7 +723,7 @@ QRadioButton#radioButton_5::indicator:checked {
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Low Tidal Volume</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_4">
@@ -751,6 +754,7 @@ QRadioButton#radioButton_3,
 QRadioButton#radioButton_4,
 QRadioButton#radioButton_5 {
     spacing: 0px;
+    color: transparent; /* label scenario sudah tercetak di gambar background */
 }
 QRadioButton#radioButton_1::indicator,
 QRadioButton#radioButton_2::indicator,
@@ -775,7 +779,7 @@ QRadioButton#radioButton_5::indicator:checked {
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Increased Respiratory Rate</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_5">
@@ -806,6 +810,7 @@ QRadioButton#radioButton_3,
 QRadioButton#radioButton_4,
 QRadioButton#radioButton_5 {
     spacing: 0px;
+    color: transparent; /* label scenario sudah tercetak di gambar background */
 }
 QRadioButton#radioButton_1::indicator,
 QRadioButton#radioButton_2::indicator,
@@ -830,7 +835,7 @@ QRadioButton#radioButton_5::indicator:checked {
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Custom Scenario</string>
       </property>
      </widget>
     </widget>
