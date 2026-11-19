@@ -122,7 +122,7 @@ qmake VITA_UI_Patch_0.1.pro
 mingw32-make -f Makefile.Release -j4
 ```
 
-Atau pakai task VS Code **Build Qt (QMake)** (`.vscode/task.json`; PATH-nya sudah diatur di
+Atau pakai task VS Code **Build Qt (QMake)** (`.vscode/tasks.json`; PATH-nya sudah diatur di
 `.vscode/settings.json`).
 
 Hasil build langsung bernama `release\VITA_UI_Patch_0.1.exe` (sesuai `TARGET` di `.pro`).
@@ -150,13 +150,3 @@ Deploy ulang dependency (misal setelah menambah modul Qt):
    landing page. `main.cpp` juga men-set index 0 secara eksplisit.
 5. **`frame`, `frame_2`, `frame_3`, `frame_4` memakai `frameShape = NoFrame`** supaya Qt tidak
    menggambar kotak border di atas gambar desain.
-
-## Checklist
-
-- [x] `git init` dengan branch `main`
-- [x] Remote `origin` terhubung ke GitHub
-- [x] Source Qt (`main.cpp`, `Landingpage.ui`, `.pro`) masuk repo
-- [x] Bundle `release/` (exe + Qt DLL) diuji jalan di Windows
-- [x] Migrasi path aset ke `.qrc` / path relatif
-- [x] Selaraskan `TARGET` di `.pro` dengan nama exe rilis
-
