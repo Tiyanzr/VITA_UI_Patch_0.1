@@ -1,0 +1,20 @@
+# Qt / qmake build artifacts
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+*.o
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+debug/
+
+# Qt debug-only plugins (tidak dipakai oleh build release)
+release/platforms/*d.dll
+release/imageformats/*d.dll
+release/styles/*d.dll
+release/iconengines/*d.dll
+
+# Terjemahan Qt (aplikasi tidak memuat QTranslator)
+release/translations/

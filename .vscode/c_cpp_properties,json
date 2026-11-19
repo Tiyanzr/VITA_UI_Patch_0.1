@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "name": "Qt5-MinGW",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/Qt/Qt5.11.2/5.11.2/mingw53_32/include",
+        "C:/Qt/Qt5.11.2/5.11.2/mingw53_32/include/QtCore",
+        "C:/Qt/Qt5.11.2/5.11.2/mingw53_32/include/QtGui",
+        "C:/Qt/Qt5.11.2/5.11.2/mingw53_32/include/QtWidgets"
+      ],
+      "defines": ["UNICODE", "_UNICODE"],
+      "compilerPath": "C:/Qt/Qt5.11.2/Tools/mingw530_32/bin/g++.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++14",
+      "intelliSenseMode": "windows-gcc-x86"
+    }
+  ],
+  "version": 4
+}
