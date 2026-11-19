@@ -7,7 +7,6 @@ dengan pemilihan durasi latihan (5/10/15/20 menit).
 
 | Item | Keterangan |
 |---|---|
-| Lokal | `D:\Projects\10_Instrumentation\VITA_UI_Patch_0.1` |
 | Remote | https://github.com/Tiyanzr/VITA_UI_Patch_0.1.git |
 | Branch utama | `main` |
 | Toolchain build | Qt 5.11.2 `mingw53_32` (32-bit) + MinGW GCC 5.3.0 |
@@ -48,7 +47,7 @@ Butuh **Qt 5.11.2 MinGW 32-bit** ([arsip installer](https://download.qt.io/archi
 pilih `qt-opensource-windows-x86-mingw530-5.11.2.exe`).
 
 ```powershell
-# ganti <folder-tujuan> dengan lokasi pilihan Anda, mis. D:\Projects\VITA_UI_Patch_0.1
+# ganti <folder-tujuan> dengan lokasi pilihan Anda, mis. C:\dev\VITA_UI_Patch_0.1
 git clone https://github.com/Tiyanzr/VITA_UI_Patch_0.1.git "<folder-tujuan>"
 cd "<folder-tujuan>"
 
