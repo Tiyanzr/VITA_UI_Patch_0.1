@@ -27,12 +27,85 @@ VITA_UI_Patch_0.1/
 └─ .gitignore                # mengabaikan artefak build & plugin debug
 ```
 
-## Cara Menjalankan (end user)
+## Mulai Cepat
 
-1. Ambil seluruh isi repository (jangan hanya menyalin file `.exe`).
-2. Buka folder `release\` lalu jalankan `VITA_UI_Patch_0.1.exe` (double click).
+Ada dua jalur. Pilih sesuai kebutuhan:
 
-### Prasyarat runtime
+| Jalur | Perlu install Qt? | Cocok untuk |
+|---|---|---|
+| **A. Langsung pakai bundle exe** | Tidak | Hanya ingin menjalankan aplikasi |
+| **B. Build dari source** | Ya (Qt 5.11.2 MinGW 32-bit) | Ingin mengubah kode atau build sendiri |
+
+### Jalur A — Hanya ingin menjalankan aplikasinya
+
+Tidak perlu install Qt atau Visual C++ Redistributable; semua runtime sudah ikut di folder `release\`.
+
+**Cara termudah (lewat browser):**
+
+1. Unduh seluruh repo sebagai ZIP: **[VITA_UI_Patch_0.1-main.zip](https://github.com/Tiyanzr/VITA_UI_Patch_0.1/archive/refs/heads/main.zip)**
+2. Ekstrak ZIP-nya (klik kanan → *Extract All*).
+3. Buka folder `VITA_UI_Patch_0.1-main\release\`, lalu double-click **`VITA_UI_Patch_0.1.exe`**.
+
+**Cara lewat terminal (PowerShell):**
+
+```powershell
+# 1) unduh + ekstrak
+Invoke-WebRequest -Uri "https://github.com/Tiyanzr/VITA_UI_Patch_0.1/archive/refs/heads/main.zip" -OutFile "$env:TEMP\vita.zip"
+Expand-Archive -LiteralPath "$env:TEMP\vita.zip" -DestinationPath "$env:TEMP\vita" -Force
+
+# 2) jalankan aplikasinya
+Start-Process "$env:TEMP\vita\VITA_UI_Patch_0.1-main\release\VITA_UI_Patch_0.1.exe"
+```
+
+Link lain yang berguna:
+
+- Isi folder rilis di GitHub: [release/](https://github.com/Tiyanzr/VITA_UI_Patch_0.1/tree/main/release)
+- File exe langsung: [VITA_UI_Patch_0.1.exe](https://github.com/Tiyanzr/VITA_UI_Patch_0.1/raw/main/release/VITA_UI_Patch_0.1.exe)
+  — kalau diunduh satu file saja, aplikasi **tidak akan jalan**. Exe butuh DLL Qt, `libgcc_s_dw2-1.dll`,
+  `libstdc++-6.dll`, `libwinpthread-1.dll`, dan folder `platforms\qwindows.dll` di folder yang sama.
+
+> Belum ada installer (`setup.exe`). Distribusi saat ini berupa folder portable `release\`.
+> Jangan memindahkan `VITA_UI_Patch_0.1.exe` sendirian — salin seluruh isi folder `release\`.
+
+### Jalur B — Build sendiri dari source (terminal)
+
+Prasyarat: **Qt 5.11.2 MinGW 32-bit** terpasang di `C:\Qt\Qt5.11.2`
+([arsip installer Qt 5.11.2](https://download.qt.io/archive/qt/5.11/5.11.2/), pilih
+`qt-opensource-windows-x86-mingw530-5.11.2.exe`).
+
+```powershell
+# 1) ambil source
+git clone https://github.com/Tiyanzr/VITA_UI_Patch_0.1.git
+cd VITA_UI_Patch_0.1
+
+# 2) pastikan compiler Qt (GCC 5.3.0) dipakai lebih dulu daripada compiler lain di PATH
+$env:PATH = "C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin;C:\Qt\Qt5.11.2\Tools\mingw530_32\bin;" + $env:PATH
+
+# 3) generate Makefile + build release
+qmake VITA_UI_Patch_0.1.pro
+mingw32-make -f Makefile.Release -j4
+
+# 4) jalankan
+.\release\VITA_UI_Patch_0.1.exe
+```
+
+Kalau source diunduh sebagai ZIP (bukan `git clone`), lewati langkah 1 dan langsung masuk ke folder
+hasil ekstrak, mis. `cd "$env:USERPROFILE\Downloads\VITA_UI_Patch_0.1-main"`.
+
+Kalau memakai **CMD**, ganti baris PATH menjadi:
+
+```bat
+set PATH=C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin;C:\Qt\Qt5.11.2\Tools\mingw530_32\bin;%PATH%
+```
+
+Setelah build selesai, folder `release\` sudah berisi exe baru beserta DLL. Penjelasan lengkap
+(termasuk `windeployqt` dan penyebab error `0xC0000139`) ada di
+[Cara Build dari Source](#cara-build-dari-source).
+
+## Prasyarat Runtime (bundle exe)
+
+Setelah ZIP diekstrak, aplikasi dijalankan langsung dari folder `release\` — tidak ada proses
+instalasi. Yang perlu dipastikan:
 
 - Windows 32-bit atau 64-bit (exe bertipe `pei-i386`, jadi tetap jalan di Windows 64-bit).
 - **Tidak perlu** install Qt maupun Visual C++ Redistributable — semua runtime sudah dibundel.
@@ -56,7 +129,7 @@ Plugin wajib tetap berada di subfolder `release\platforms\`. Bila exe dipindah s
 aplikasi akan error *"This application failed to start because no Qt platform plugin could be
 initialized"*.
 
-### Yang belum di-commit (sengaja)
+## Yang belum di-commit (sengaja)
 
 Agar repo tidak membengkak, file berikut diabaikan lewat `.gitignore` (tetap ada di mesin lokal):
 
