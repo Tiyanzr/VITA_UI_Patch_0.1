@@ -1,6 +1,6 @@
 # VITA UI Patch 0.1
 
-Patch UI untuk VITA — aplikasi desktop Qt Widgets (C++14, qmake) berisi halaman landing
+Patch UI untuk VITA, aplikasi desktop Qt Widgets (C++14, qmake) berisi halaman landing
 dengan pemilihan durasi latihan (5/10/15/20 menit).
 
 ## Info Repository
@@ -37,7 +37,7 @@ Unduh folder **[release/](https://github.com/Tiyanzr/VITA_UI_Patch_0.1/tree/main
 .\release\VITA_UI_Patch_0.1.exe
 ```
 
-> `.exe` tidak bisa jalan sendirian — harus satu folder dengan `Qt5*.dll`, `libgcc_s_dw2-1.dll`,
+> `.exe` tidak bisa jalan sendirian jadi harus satu folder dengan `Qt5*.dll`, `libgcc_s_dw2-1.dll`,
 > `libstdc++-6.dll`, `libwinpthread-1.dll`, dan `platforms\qwindows.dll`.
 > Rinciannya ada di [Prasyarat Runtime](#prasyarat-runtime-bundle-exe).
 
